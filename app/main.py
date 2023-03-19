@@ -1,9 +1,9 @@
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, ContextTypes, CommandHandler
 import message_handlers
 
-#load_dotenv()
+load_dotenv()
 
 
 def main():
