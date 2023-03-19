@@ -7,7 +7,7 @@ test the live bot here https://web.telegram.org/k/#@itsAi_bot
 # GETTING  STARTED
 create a bot using telegrams @botfather , an API token for OpenAi and and mongoDb connection string
 1. create a .env file with the following parameters
-    ```json
+    ```
     BOT_TOKEN="**********"
     OPENAI_API_KEY="************"
     MONGO_URI="************"
