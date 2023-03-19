@@ -1,7 +1,7 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 import chatgpt_client , database
-
+from datetime import datetime
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
@@ -11,7 +11,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    
     messages = await database.get_messages( update.effective_chat.id )
     if messages != None:
         prompt = '\n'.join(messages+ [ update.message.text])
@@ -19,6 +18,7 @@ async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         prompt = update.message.text
     
     ai_response = chatgpt_client.generate_response( prompt)
+    print(f'OPENAI: request made for chat:{update.effective_chat.id} at {datetime.now() }')
     
     await database.insert_message(update.effective_chat.id, update.message.text)
     await context.bot.send_message(
